@@ -1,3 +1,4 @@
+
 import streamlit as st
 import pandas as pd
 from huggingface_hub import hf_hub_download
@@ -11,8 +12,8 @@ model = joblib.load(model_path)
 st.set_page_config(page_title="Engine Maintenance Prediction", layout="centered")
 st.title("Engine Predictive Maintenance Prediction")
 st.write("""
-This application predicts whether an engine need an immediate maintenace or not
-Based on its characteristics such as coolant temperature,lub oil pressure,engine pressure,  etc.
+This application predicts whether an engine needs an immediate maintenace or not
+based on its characteristics such as coolant temperature,lub oil pressure,engine pressureetc.
 Please enter the app details below to check if specific engine needs a maintenace or not.
 """)
 
@@ -29,7 +30,7 @@ coolant_temp = st.number_input("Coolant Temperature", min_value=0.0, value=85.0)
 input_data = pd.DataFrame([{
         "Engine rpm": engine_rpm,
         "Lub oil pressure": lub_oil_pressure,
-        "Fuel pressure":fuel_pressure,
+        "Fuel pressure": fuel_pressure,
         "Coolant pressure": coolant_pressure,
         "Lub oil temp": lub_oil_temp,
         "Coolant temp": coolant_temp

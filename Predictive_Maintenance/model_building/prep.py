@@ -1,3 +1,4 @@
+
 # for data manipulation
 import pandas as pd
 import sklearn
@@ -5,10 +6,8 @@ import sklearn
 import os
 # for data preprocessing and pipeline creation
 from sklearn.model_selection import train_test_split
-# for converting text data in to numerical representation
-from sklearn.preprocessing import LabelEncoder
 # for hugging face space authentication to upload files
-from huggingface_hub import login, HfApi
+from huggingface_hub import HfApi
 
 # Define constants for the dataset and output paths
 api = HfApi(token=os.getenv("HF_TOKEN"))

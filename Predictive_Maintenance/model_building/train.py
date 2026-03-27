@@ -1,6 +1,7 @@
+
 # for data manipulation
 import pandas as pd
-from sklearn.preprocessing import StandardScaler, OneHotEncoder
+from sklearn.preprocessing import StandardScaler
 from sklearn.compose import make_column_transformer
 from sklearn.pipeline import make_pipeline
 # for model training, tuning, and evaluation
@@ -16,7 +17,7 @@ from huggingface_hub import login, HfApi, create_repo
 from huggingface_hub.utils import RepositoryNotFoundError, HfHubHTTPError
 import mlflow
 import subprocess
-import mlflow
+
 from sklearn.metrics import (
     accuracy_score,
     precision_score,
@@ -26,6 +27,7 @@ from sklearn.metrics import (
     confusion_matrix
 )
 
+# utility function
 def evaluate_model(y_test, preds, probs):
 
     metrics = {}
@@ -39,12 +41,12 @@ def evaluate_model(y_test, preds, probs):
     return metrics
 
 
-
+# setting up MLFlow
 mlflow.set_tracking_uri("http://localhost:5000")
 mlflow.set_experiment("Predictive Maintenance V1")
 
+# Connect to HuggingFace and load test and train data
 api = HfApi()
-
 login(token=os.getenv("HF_TOKEN"))
 BASE = "https://huggingface.co/datasets/debrupa24/predictive-maintenance-analysis/resolve/main/"
 
@@ -54,11 +56,14 @@ y_train = pd.read_csv(BASE + "ytrain.csv")
 y_test = pd.read_csv(BASE + "ytest.csv")
 
 print("Data loaded successfully")
+
+# Preprocess data
 scaler = StandardScaler()
 
 X_train = scaler.fit_transform(X_train)
 X_test = scaler.transform(X_test)
 
+# Define model
 gb_params = {
     "n_estimators": [100, 200],
     "learning_rate": [0.01, 0.05, 0.1],
