@@ -15,8 +15,6 @@ import os
 from huggingface_hub import login, HfApi, create_repo
 from huggingface_hub.utils import RepositoryNotFoundError, HfHubHTTPError
 import mlflow
-
-from pyngrok import ngrok
 import subprocess
 import mlflow
 from sklearn.metrics import (
@@ -60,20 +58,6 @@ scaler = StandardScaler()
 
 X_train = scaler.fit_transform(X_train)
 X_test = scaler.transform(X_test)
-
-
-
-# Start MLflow UI on port 5000
-process = subprocess.Popen(["mlflow", "ui", "--port", "5000"])
-
-# Create public tunnel
-public_url = ngrok.connect(5000).public_url
-print("MLflow UI is available at:", public_url)
-# Set the tracking URL for MLflow
-mlflow.set_tracking_uri(public_url)
-
-# Set the name for the experiment
-mlflow.set_experiment("Predictive Maintenance V1")
 
 gb_params = {
     "n_estimators": [100, 200],
