@@ -30,20 +30,8 @@ jobs:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: python Predictive_Maintenance/model_building/prep.py
 
-  utility:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Install Dependencies
-        run: pip install -r Predictive_Maintenance/requirements.txt
-      - name: Add utility functions
-        env:
-          HF_TOKEN: ${{ secrets.HF_TOKEN }}
-        run: python Predictive_Maintenance/model_building/utility_functions.py
-
-
   model-traning:
-    needs: [data-prep,utility]
+    needs: data-prep
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
