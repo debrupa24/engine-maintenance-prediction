@@ -3,7 +3,7 @@ name: Engine Prediction Model
 on:
   push:
     branches:
-      - debrupa24-patch-1  # Automatically triggers on push to the dev branch
+      - main  # Automatically triggers on push to the dev branch
 
 jobs:
 
