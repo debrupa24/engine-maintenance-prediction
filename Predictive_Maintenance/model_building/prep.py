@@ -16,6 +16,9 @@ DATASET_PATH = "hf://datasets/debrupa24/predictive-maintenance-analysis/engine_d
 df = pd.read_csv(DATASET_PATH)
 print("Dataset loaded successfully.")
 
+# Identify target column
+
+target_col = "Engine Condition"
 X = df.drop(columns=[target_col])
 y = df[target_col]
 

@@ -22,6 +22,10 @@ import mlflow
 import evaluate_model
 
 
+mlflow.set_tracking_uri("http://localhost:5000")
+mlflow.set_experiment("Predictive Maintenance V1")
+
+api = HfApi()
 
 login(token=os.getenv("HF_TOKEN"))
 BASE = "https://huggingface.co/datasets/debrupa24/predictive-maintenance-analysis/resolve/main/"
@@ -37,8 +41,7 @@ scaler = StandardScaler()
 X_train = scaler.fit_transform(X_train)
 X_test = scaler.transform(X_test)
 
-# Set auth token here (replace with your actual token)
-ngrok.set_auth_token(ngrok_token)
+
 
 # Start MLflow UI on port 5000
 process = subprocess.Popen(["mlflow", "ui", "--port", "5000"])
