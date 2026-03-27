@@ -29,6 +29,7 @@ coolant_temp = st.number_input("Coolant Temperature", min_value=0.0, value=85.0)
 input_data = pd.DataFrame([{
         "Engine Rpm": engine_rpm,
         "Lub oil pressure": lub_oil_pressure,
+        "Fuel pressure":fuel_pressure,
         "Coolant pressure": coolant_pressure,
         "Lub oil temp": lub_oil_temp,
         "Coolant temp": coolant_temp
