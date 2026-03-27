@@ -97,7 +97,7 @@ with mlflow.start_run(run_name="GradientBoosting"):
     print("predictive maintenance GB Metrics:", metrics)
 
     # Save the model locally
-    model_path = "/content/Predictive_Maintenance/model_building/predictive_maintenance_model_v1.joblib"
+    model_path = "predictive_maintenance_model_v1.joblib"
     joblib.dump(gb_grid, model_path)
 
     # Log the model artifact
